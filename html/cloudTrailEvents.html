@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+    <head>
+        <title>Cloud Trail Events</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: content-box;
+        }
+        body{
+            color: #F3F3F3;
+            background-color: #010101;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            margin: 50px 0;
+        }
+        .header .CloudTrailImg{
+            width: 50px;
+            aspect-ratio: 1/1;
+            border-radius: 2px;
+        }
+        .header span{
+            font-size: 25px;
+            font-family : 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 700;
+        }
+        .data{
+            width: 1450px;
+            border-radius: 7px;
+        }
+        .data tr td{
+            border: 1px solid #086708;
+            font-size: 15px;
+            font-weight: 500;
+            font-style: italic;
+            text-align: center;
+        }
+        .data tr th{
+            border: 1px solid #086708;
+            font-size: 23px;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .back{
+            position: absolute;
+            top : 30px;
+            left: 30px;
+            font-size: 17px;
+            color: #F3F3F3;
+            background-color: #17085a;
+            padding: 5px;
+            border: 1px solid #F3F3F3;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+    </style>
+
+    <body>
+        <div class="main">
+            <a href="aws" class="back"><= Back</a>
+            <div class="header">
+                <img src="{% static 'CloudTrail.png' %}" alt="Cloud Trail Icon" class="CloudTrailImg">
+                <span>Cloud Trail events</span>
+            </div>
+            <table class="data" border="1">
+                <tr>
+                    <th>Event Id</th>
+                    <th>Event Name</th>
+                    <th>Event Time</th>
+                    <th>Event Source</th>
+                    <th>Region</th>
+                    <th>Event Type</th>
+                    <th>UserName</th>
+                </tr>
+                {% for event in events%}
+                    <tr class="event">
+                        <td>{{event.EventId}}</td>
+                        <td>{{event.EventName}}</td>
+                        <td>{{event.EventTime}}</td>
+                        <td>{{event.EventSource}}</td>
+                        <td>{{event.Region}}</td>
+                        <td>{{event.EventType}}</td>
+                        <td>{{event.username}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>

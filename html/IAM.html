@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+    <head>
+        <title>Identity Access Management</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: content-box;
+        }
+        body{
+            color: #F3F3F3;
+            background-color: #010101;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            margin: 50px 0;
+        }
+        .header .IAMImg{
+            width: 50px;
+            aspect-ratio: 1/1;
+            border-radius: 2px;
+        }
+        .header span{
+            font-size: 23px;
+            font-family : 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        .data{
+            width: 1500px;
+            border-radius: 7px;
+        }
+        .data tr td{
+            border: 1px solid #086708;
+            font-size: 15px;
+            font-weight: 500;
+            font-style: italic;
+            text-align: center;
+            width: 300px;
+        }
+        .data tr th{
+            border: 1px solid #086708;
+            font-size: 23px;
+            font-weight: 700;
+            font-style: normal;
+            width: 300px;
+        }
+        .back{
+            position: absolute;
+            top : 30px;
+            left: 30px;
+            font-size: 17px;
+            color: #F3F3F3;
+            background-color: #17085a;
+            padding: 5px;
+            border: 1px solid #F3F3F3;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+    </style>
+
+    <body>
+        <a href="aws" class="back"><= Back</a>
+        <div class="users">
+            <div class="header">
+                <img src="{% static 'IdentityandAccessManagement.png' %}" alt="IAM Icon" class="IAMImg">
+                <span>IAM Users</span>
+            </div>
+            <table class="data" border="1">
+                <tr>
+                    <th>User ID</th>
+                    <th>ARN</th>
+                    <th>UserName</th>
+                    <th>Created Date</th>
+                    <th>PermissionsBoundary</th>
+                </tr>
+                {% for user in Users%}
+                    <tr class="user">
+                        <td>{{user.userId}}</td>
+                        <td>{{user.userARN}}</td>
+                        <td>{{user.userName}}</td>
+                        <td>{{user.userCreatedTime}}</td>
+                        <td>{{user.userPermissionsBoundary}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="roles">
+            <div class="header">
+                <img src="{% static 'IdentityandAccessManagement.png' %}" alt="IAM Icon" class="IAMImg">
+                <span>IAM Roles</span>
+            </div>
+            <table class="data" border="1">
+                <tr>
+                    <th>Role ID</th>
+                    <th>ARN</th>
+                    <th>Role Name</th>
+                    <th>Created Date</th>
+                    <th>Description</th>
+                </tr>
+                {% for role in Roles%}
+                    <tr class="role">
+                        <td>{{role.RoleId}}</td>
+                        <td>{{role.RoleARN}}</td>
+                        <td>{{role.RoleName}}</td>
+                        <td>{{role.RoleCreatedTime}}</td>
+                        <td>{{role.RoleDescription}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="policies">
+            <div class="header">
+                <img src="{% static 'IdentityandAccessManagement.png' %}" alt="IAM Icon" class="IAMImg">
+                <span>IAM Policies</span>
+            </div>
+            <table class="data" border="1">
+                <tr>
+                    <th>Policy ID</th>
+                    <th>ARN</th>
+                    <th>Policy Name</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                </tr>
+                {% for policy in Policies %}
+                    <tr class="policy">
+                        <td>{{policy.policyId}}</td>
+                        <td>{{policy.policyARN}}</td>
+                        <td>{{policy.PolicyName}}</td>
+                        <td>{{policy.policyCreatedTime}}</td>
+                        <td>{{policy.policyUpdatedDate}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>

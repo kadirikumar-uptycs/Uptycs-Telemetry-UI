@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+    <head>
+        <title>Compute Engine</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: content-box;
+        }
+        body{
+            color: #F3F3F3;
+            background-color: #010101;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            margin: 50px 0;
+        }
+        .header img{
+            width: 50px;
+            aspect-ratio: 1/1;
+            border-radius: 2px;
+        }
+        .header span{
+            font-size: 25px;
+            font-family : 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 700;
+            margin-left: 10px;
+            color: #daa520;
+        }
+        .data{
+            width: 1450px;
+            border-radius: 7px;
+        }
+        .data tr td{
+            border: 1px solid #0686f0;
+            font-size: 15px;
+            font-weight: 500;
+            font-style: italic;
+            text-align: center;
+        }
+        .data tr th{
+            border: 1px solid #0686f0;
+            font-size: 23px;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .back{
+            position: absolute;
+            top : 30px;
+            left: 30px;
+            font-size: 17px;
+            color: #F3F3F3;
+            background-color: #86280e;
+            padding: 5px;
+            border: 1px solid #F3F3F3;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+        .back:hover{
+            background-color: #fa4816;
+            transition: ease-in 0.2s;
+        }
+        .block{
+            display: block;
+        }
+    </style>
+
+    <body>
+        <div class="main">
+            <a href="gcp" class="back"><= Back</a>
+            <div class="header">
+                <img src="{% static 'ComputeEngine.png' %}" alt="Compute Engine Icon">
+                <span>Compute Engine</span>
+            </div>
+            <table class="data" border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Zone</th>
+                    <th>Type</th>
+                    <th>External IP</th>
+                    <th>CPU Platform</th>
+                    <th>Created Time</th>
+                    <th>Labels</th>
+                </tr>
+                {% for computeEngine in ComputeEngines %}
+                    <tr class="event">
+                        <td>{{computeEngine.instanceName}}</td>
+                        <td>{{computeEngine.instanceZone}}</td>
+                        <td>{{computeEngine.instanceType}}</td>
+                        <td>{{computeEngine.instanceExternalIPAddress}}</td>
+                        <td>{{computeEngine.instanceCPUPlatform}}</td>
+                        <td>{{computeEngine.instanceCreatedTime}}</td>
+                        <td>
+                            {% for tag in computeEngine.instanceTags %}
+                                <span class="block">{{ "{" }}{{tag.key}} : {{tag.value}}{{ "}" }}</span>
+                            {% endfor %}
+                        </td>                        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>

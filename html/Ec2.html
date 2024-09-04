@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+    <head>
+        <title>Elastic Cloud Compute</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: content-box;
+        }
+        body{
+            color: #F3F3F3;
+            background-color: #010101;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            margin: 50px 0;
+        }
+        .header .Ec2Img{
+            width: 50px;
+            aspect-ratio: 1/1;
+            border-radius: 2px;
+        }
+        .header span{
+            font-size: 23px;
+            font-family : 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 700;
+        }
+        .data{
+            width: 1000px;
+            border-radius: 7px;
+        }
+        .data tr td{
+            border: 1px solid #086708;
+            font-size: 15px;
+            font-weight: 500;
+            font-style: italic;
+            text-align: center;
+        }
+        .data tr th{
+            border: 1px solid #086708;
+            font-size: 23px;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .back{
+            position: absolute;
+            top : 30px;
+            left: 30px;
+            font-size: 17px;
+            color: #F3F3F3;
+            background-color: #17085a;
+            padding: 5px;
+            border: 1px solid #F3F3F3;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+    </style>
+
+    <body>
+        <div class="main">
+            <a href="aws" class="back"><= Back</a>
+            <div class="header">
+                <img src="{% static 'EC2.png' %}" alt="EC2 Icon" class="Ec2Img">
+                <span>Elastic Cloud Compute</span>
+            </div>
+            <table class="data" border="1">
+                <tr>
+                    <th>Instance ID</th>
+                    <th>Instance Name</th>
+                    <th>Public IP</th>
+                    <th>Platform</th>
+                    <th>Instance Type</th>
+                    <th>Key Name</th>
+                    <th>VPC ID</th>
+                </tr>
+                {% for instance in Instances%}
+                    <tr class="instance">
+                        <td>{{instance.InstanceId}}</td>
+                        <td>{{instance.InstanceName}}</td>
+                        <td>{{instance.PublicIp}}</td>
+                        <td>{{instance.platform}}</td>
+                        <td>{{instance.InstanceType}}</td>
+                        <td>{{instance.keyName}}</td>
+                        <td>{{instance.vpcId}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>

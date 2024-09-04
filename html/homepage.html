@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <title>AWS Project</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        box-sizing: content-box;
+    }
+
+    body {
+        color: #F3F3F3;
+        background-color: #010101;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .icons {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100vw;
+    }
+
+
+    .icons a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .icons img {
+        width: 200px;
+        aspect-ratio: 1/1;
+        border-radius: 7px;
+        margin: 0 50px;
+    }
+
+    .icons a span {
+        font-size: 23px;
+        margin-top: 5px;
+        color: #F3F3F3;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="icons">
+                <a class="aws" href="aws">
+                    <img src="{% static 'AWS.png' %}" alt="AWS Icon" class="awsImg">
+                    <span>Amazon Web Services</span>
+                </a>
+                <a class="gcp" href="gcp">
+                    <img src="{% static 'GCP.png' %}" alt="GCP Icon" class="gcpImg">
+                    <span>Google Cloud Platform</span>
+                </a>
+        </div>
+    </div>
+</body>
+
+</html>
